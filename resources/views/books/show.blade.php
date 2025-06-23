@@ -9,4 +9,12 @@
         <p><strong>Public:</strong> {{ $book->is_public ? 'Yes' : 'No' }}</p>
     </div>
 
+    <div class="mt-4">
+        <a href="{{ route('books.index') }}" class="btn">Back to Books List</a>
+    </div>
+
+    <div class="mt-4">
+        <a href="{{ route('books.edit', $book->id) }}" class="btn">Edit Book</a>
+    </div>
+
 </x-layout>

@@ -87,4 +87,15 @@ class BookController extends Controller
         // Redirect to the index page with a success message
         return redirect()->route('books.index')->with('success', 'Book updated successfully!');
     }
+
+    public function destroy($id)
+    {
+        // route '/destroy/{id}' to delete a book
+        // Logic to delete a book by ID
+        $book = Book::findOrFail($id);
+        $book->delete();
+
+        // Redirect to the index page with a success message
+        return redirect()->route('books.index')->with('success', 'Book deleted successfully!');
+    }
 }

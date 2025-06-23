@@ -7,8 +7,13 @@
         <p><strong>ISBN:</strong> {{ $book->isbn }}</p>
         <p><strong>Genre:</strong> {{ $book->genre }}</p>
         <p><strong>Public:</strong> {{ $book->is_public ? 'Yes' : 'No' }}</p>
-        <div class="mt-4">
-            <a href="{{ route('books.edit', $book->id) }}" class="btn">Edit Book</a>
+        <div class="mt-4 flex justify-center items-center gap-4">
+            <a href="{{ route('books.edit', $book->id) }}" class="btn my-4 w-32 text-center">Edit Book</a>
+            <form method="POST" action="{{ route('books.destroy', $book->id) }}" class="my-4 w-32">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger w-full">Delete Book</button>
+            </form>
         </div>
     </div>
 

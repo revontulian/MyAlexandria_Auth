@@ -22,7 +22,13 @@
 
         <!-- Book genre -->
         <label for="genre">Genre:</label>
-        <input type="text" id="genre" name="genre">
+        <select id="genre" name="genre" required>
+            <option value="" disable selected>Select a genre</option>
+            @foreach ($genres as $genre)
+            <option value="{{ $genre }}">{{ $genre }}</option>
+            @endforeach
+        </select>
+      
 
         <!-- Book public status -->
         <label for="is_public">Public:</label>

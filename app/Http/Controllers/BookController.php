@@ -27,6 +27,8 @@ class BookController extends Controller
     {
         // route '/add' to show a form for adding a new book
         // Logic to show a form for adding a new book
+        $genres = ['Fiction', 'Non-Fiction', 'Science Fiction', 'Fantasy', 'Mystery']; // Example genres
+        return view('books.add', ['genres' => $genres]);
     }
 
     public function store(Request $request)

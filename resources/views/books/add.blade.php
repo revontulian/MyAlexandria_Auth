@@ -1,5 +1,5 @@
 <x-layout>
-    <form method="POST" action="">
+    <form method="POST" action="{{ route('books.store') }}">
         <!-- CSRF token for security -->
         @csrf
         <h2>Add a new book</h2>
@@ -28,11 +28,12 @@
             <option value="{{ $genre }}">{{ $genre }}</option>
             @endforeach
         </select>
-      
+
 
         <!-- Book public status -->
-        <label for="is_public">Public:</label>
-        <input type="checkbox" id="is_public" name="is_public" value="" checked>
+        <label for="is_public" class="block mb-2">Do you want this book to be public?</label>
+        <input type="hidden" name="is_public" value="0">
+        <input type="checkbox" id="is_public" name="is_public" value="1" checked>
 
         <!-- Submit button -->
         <button type="submit" class="btn mt-4">Add Book</button>

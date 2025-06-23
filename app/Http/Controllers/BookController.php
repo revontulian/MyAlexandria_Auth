@@ -22,7 +22,7 @@ class BookController extends Controller
         $book = Book::findOrFail($id);
         return view('books.show', ['book' => $book]);
     }
-    
+
     public function add()
     {
         // route '/add' to show a form for adding a new book
@@ -35,5 +35,18 @@ class BookController extends Controller
     {
         // route '/store' to handle the submission of the new book form
         // Logic to validate and create a new book
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'isbn' => 'required|string|max:13|unique:books,isbn',
+            'genre' => 'required|string|max:50',
+            'published_date' => 'required|date',
+            'is_public' => 'nullable|boolean',
+        ]);
+
+        Book::create($validated);
+
+        // Redirect to the index page with a success message
+        return redirect()->route('books.index')->with('success', 'Book added successfully!');
     }
 }

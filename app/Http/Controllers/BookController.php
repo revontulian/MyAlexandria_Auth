@@ -11,7 +11,7 @@ class BookController extends Controller
     {
         // route '/index' to list all books
         // Logic to retrieve and return a list of books
-        $books = Book::orderBy('created_at', 'desc')->get();
+        $books = Book::orderBy('created_at', 'desc')->paginate(10);
         return view('books.index', ['books' => $books]); // Assuming you have a view named 'books.index'
     }
 
@@ -20,7 +20,7 @@ class BookController extends Controller
         // route '/show/{id}' to retrieve a single book by ID
         // Logic to retrieve and return a single book by ID
         $book = Book::findOrFail($id);
-        return view('books.show', ['book' => $book]); // Assuming you have a view named 'books.show'
+        return view('books.show', ['book' => $book]);
     }
     
     public function add()

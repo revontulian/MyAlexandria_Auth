@@ -12,7 +12,7 @@ class BookController extends Controller
         // route '/index' to list all books
         // Logic to retrieve and return a list of books
         $books = Book::orderBy('created_at', 'desc')->paginate(10);
-        return view('books.index', ['books' => $books]); // Assuming you have a view named 'books.index'
+        return view('books.index', ['books' => $books]);
     }
 
     public function show($id)

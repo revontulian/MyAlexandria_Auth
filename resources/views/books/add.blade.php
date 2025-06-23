@@ -37,7 +37,7 @@
 
         <!-- Submit button -->
         <button type="submit" class="btn mt-4">Add Book</button>
-        <a href="" class="btn mt-4">Cancel</a>
+        <a href="/myshelf" class="btn mt-4">Cancel</a>
 
 
         <!-- Display validation errors -->

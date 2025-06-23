@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('published_date')->nullable();
             $table->string('genre')->nullable();
             $table->boolean('is_public')->default(true);
+            
         });
     }
 

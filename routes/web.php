@@ -1,11 +1,16 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('show.register');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('show.login');
+
 
 Route::get('/myshelf', [BookController::class, 'index'])->name('books.index');
 Route::get('/show/{id}', [BookController::class, 'show'])->name('books.show');

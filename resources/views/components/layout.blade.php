@@ -15,11 +15,15 @@
     
     <header>
         <nav>
-            <h1>MyAlexandria App</h1>
+            <h1>
+                <a href="/">MyAlexandria App</a>
+            </h1>
+            
+            <a href="{{ route('books.index') }}" class="btn">My Shelf</a>
+            <a href="{{ route('books.add') }}" class="btn">Add a book</a>
 
-            <a href="/">Home</a>
-            <a href="{{ route('books.index') }}">My Shelf</a>
-            <a href="{{ route('books.add') }}">Add a book</a>
+            <a href="{{ route('show.login') }}" class="btn">Login</a>
+            <a href="{{ route('show.register') }}" class="btn">Register</a>
 
         </nav>
     </header>

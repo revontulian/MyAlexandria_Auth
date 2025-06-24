@@ -38,7 +38,7 @@
 
         <!-- Submit button -->
         <button type="submit" class="btn mt-4">Update Book</button>
-        <a href="{{ route('books.index') }}" class="btn mt-4">Cancel</a>
+        <a href="{{ route('books.show', $book->id) }}" class="btn mt-4">Cancel</a>
 
 
         <!-- Display validation errors -->

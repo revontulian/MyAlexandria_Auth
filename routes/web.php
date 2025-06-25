@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,4 +26,11 @@ Route::middleware('auth')->controller(BookController::class)->group(function () 
     Route::get('/edit/{id}', 'edit')->name('books.edit');
     Route::put('/books/{id}', 'update')->name('books.update');
     Route::delete('/books/{id}', 'destroy')->name('books.destroy');
+});
+
+Route::middleware('auth')->controller(UserController::class)->group(function () {
+    Route::get('/admin', 'index')->name('users.admin');
+    Route::get('/users/{id}', 'show')->name('users.show');
+    Route::post('/users/{user}', 'makeAdmin')->name('users.makeAdmin');
+    Route::delete('/users/{id}', 'destroy')->name('users.destroy');
 });

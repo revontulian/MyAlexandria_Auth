@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->json('roles')->default(json_encode(['user'])); // Default role is 'user'
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

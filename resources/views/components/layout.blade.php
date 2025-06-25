@@ -18,20 +18,24 @@
             <h1>
                 <a href="/">MyAlexandria App</a>
             </h1>
-            
+
+
             @guest
-                <a href="{{ route('show.login') }}" class="btn">Login</a>
-                <a href="{{ route('show.register') }}" class="btn">Register</a>
+            <a href="{{ route('show.login') }}" class="btn">Login</a>
+            <a href="{{ route('show.register') }}" class="btn">Register</a>
             @endguest
-            
+
             @auth
                 <span class="border-r-2 pr-2">
                     @auth
                     <span class="username">Hello, {{ auth()->user()->name }}</span>
                     @endauth
                 </span>
+
+                <a href="{{ route('users.admin') }}" class="btn">Admin Panel</a>
+
                 <a href="{{ route('books.add') }}" class="btn">Add a book</a>
-                
+
                 <form method="POST" action="{{ route('logout') }}" class="m-0">
                     @csrf
                     <button type="submit" class="btn">Logout</button>

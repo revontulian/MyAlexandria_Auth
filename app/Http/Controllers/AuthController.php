@@ -27,9 +27,7 @@ class AuthController extends Controller
         ]);
 
         $user = User::create($validatedData);
-
         Auth::login($user);
-
         return redirect()->route('books.index')->with('success', 'Registration successful.');
     }
 
@@ -37,10 +35,11 @@ class AuthController extends Controller
     {
         $validatedUser = $request->validate([
             'email' => 'required|email',
-            'password' => 'required|string|min:8',
+            'password' => 'required|string',
         ]);
 
         if (Auth::attempt($validatedUser)) {
+            $request->session()->regenerate();
             return redirect()->route('books.index')->with('success', 'Login successful.');
         } else {
             return redirect()->back()->withErrors(['email' => 'Invalid credentials.'])->withInput();
@@ -52,7 +51,7 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        
+
         return redirect()->route('show.login')->with('success', 'Logout successful.');
     }
 }

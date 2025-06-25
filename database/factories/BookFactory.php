@@ -23,6 +23,7 @@ class BookFactory extends Factory
             'published_date' => fake()->dateTimeBetween('-10 years', 'now'),
             'genre' => fake()->word(),
             'is_public' => fake()->boolean(80), // 80% chance to be true
+            'user_id' => fake()->numberBetween(1, 2)
         ];
     }
 }

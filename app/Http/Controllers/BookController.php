@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -19,7 +20,9 @@ class BookController extends Controller
     {
         // route '/index' to list all books
         // Logic to retrieve and return a list of books
-        $books = Book::orderBy('created_at', 'desc')->paginate(10);
+        $books = Book::where('user_id', Auth::id())
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
         return view('books.index', ['books' => $books]);
     }
 
@@ -50,6 +53,7 @@ class BookController extends Controller
             'published_date' => 'required|date',
             'is_public' => 'nullable|boolean',
         ]);
+        $validated['user_id'] = Auth::id();
 
         Book::create($validated);
 

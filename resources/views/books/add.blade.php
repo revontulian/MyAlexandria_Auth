@@ -29,7 +29,6 @@
             @endforeach
         </select>
 
-
         <!-- Book public status -->
         <label for="is_public" class="block mb-2">Do you want this book to be public?</label>
         <input type="hidden" name="is_public" value="0">

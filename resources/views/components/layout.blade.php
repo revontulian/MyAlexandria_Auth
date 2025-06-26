@@ -32,7 +32,13 @@
                     @endauth
                 </span>
 
-                <a href="{{ route('users.admin') }}" class="btn">Admin Panel</a>
+                @php
+                    $rolesArray = json_decode(auth()->user()->roles, true);
+                @endphp
+
+                @if (in_array('admin', $rolesArray))
+                    <a href="{{ route('users.admin') }}" class="btn">Admin Panel</a>
+                @endif
 
                 <a href="{{ route('books.add') }}" class="btn">Add a book</a>
 

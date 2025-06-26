@@ -15,6 +15,11 @@
                         @csrf
                         <button type="submit" class="btn btn-primary">Make Admin</button>
                     </form>
+                @else
+                    <form method="POST" action="{{ route('users.dismissAdmin', $user->id) }}" class="mt-2">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Dismiss Admin</button>
+                    </form>
                 @endif
             </x-card>
         </li>

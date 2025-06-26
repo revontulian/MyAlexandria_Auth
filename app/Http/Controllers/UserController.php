@@ -41,6 +41,25 @@ class UserController extends Controller
         return redirect()->route('users.admin')->with('success', 'User made admin successfully!');
     }
 
+    public function dismissAdmin($id)
+{
+    $user = User::findOrFail($id);
+
+    // Decode roles JSON to array
+    $roles = json_decode($user->roles, true) ?? [];
+
+    // Remove 'admin' role if present
+    $roles = array_values(array_filter($roles, function($role) {
+        return $role !== 'admin';
+    }));
+
+    // Encode back to JSON
+    $user->roles = json_encode($roles);
+    $user->save();
+
+    return redirect()->route('users.admin')->with('success', 'Admin privileges removed successfully!');
+}
+
     public function destroy($id)
     {
         // route '/destroy/{id}' to delete a user

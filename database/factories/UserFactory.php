@@ -29,7 +29,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
-            'roles' => ['user'], 
+            'roles' => ['user', 'admin'], // By default all users are assigned the 'user' and 'admin' roles
         ];
     }
 

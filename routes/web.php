@@ -6,7 +6,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
-    return view('welcome2');
+    return view('welcome');
 });
 
 Route::middleware('guest')->controller(AuthController::class)->group(function () {

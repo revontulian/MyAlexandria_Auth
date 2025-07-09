@@ -30,16 +30,17 @@ MyAlexandria is a personal digital library app which allows users to keep a list
 ## How to use/pre-requisites to run
 
 - Install Laravel Herd. 
-- Clone this repo.
-- Open in Visual Studio Code.
-- Copy the .env example file using: (Terminal:) cp .env.example .env
-- Generate a key using: (Terminal:) php artisan key:generate
-- Apply APP_URL=http://MyAlexandria_Auth.test in the .env file.
+- Clone this repo in the resulting Herd folder.
+- Open repo in Visual Studio Code.
 - Install dependencies:
 -     (Terminal:) composer install
 -     (Terminal:) npm install
+- Copy the .env example file using: (Terminal:) cp .env.example .env
+- Apply APP_URL=http://MyAlexandria_Auth.test in the .env file.
+- Generate a key using: (Terminal:) php artisan key:generate
 - Run migrations: In Terminal: php artisan migrate
 -     Confirm when asked if database.sqlite can be created.
+- In the terminal: npm run dev.
 - Open URL in a browser and give it a try.
 
 ## Contact

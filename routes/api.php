@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\BookController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -10,11 +11,11 @@ Route::get('/user', function (Request $request) {
 
 Route::post('register', [AuthController::class, 'register']);
 
-Route::get('books', [AuthController::class, 'getBooks'])->middleware('auth:api');
-Route::get('books/{id}', [AuthController::class, 'getBook'])->middleware('auth:api');
-Route::post('books', [AuthController::class, 'createBook'])->middleware('auth:api');
-Route::put('books/{id}', [AuthController::class, 'updateBook'])->middleware('auth:api');
-Route::delete('books/{id}', [AuthController::class, 'deleteBook'])->middleware('auth:api');
+Route::get('books', [BookController::class, 'getBooks'])->middleware('auth:api');
+Route::get('books/{id}', [BookController::class, 'getBook'])->middleware('auth:api');
+Route::post('books', [BookController::class, 'createBook'])->middleware('auth:api');
+Route::put('books/{id}', [BookController::class, 'updateBook'])->middleware('auth:api');
+Route::delete('books/{id}', [BookController::class, 'deleteBook'])->middleware('auth:api');
 
 Route::get('users', [AuthController::class, 'getUsers'])->middleware('auth:api');
 Route::post('users', [AuthController::class, 'createUser'])->middleware('auth:api');

@@ -10,12 +10,9 @@ use App\Models\Book;
 
 class BookController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function getBooks()
     {
-        $books = Book::all(); //Getting all books in the database
+        $books = Book::all();
 
         if (!$books) {
             return response()->json([
@@ -56,10 +53,6 @@ class BookController extends Controller
         ]);
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function createBook(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -92,17 +85,11 @@ class BookController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function updateBook(Request $request, string $id)
     {
         $book = Book::findOrFail($id);
@@ -133,9 +120,6 @@ class BookController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function deleteBook(string $id)
     {
         $book = Book::findOrFail($id);

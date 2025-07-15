@@ -11,14 +11,16 @@ Route::get('/user', function (Request $request) {
 
 Route::post('register', [AuthController::class, 'register']);
 
-Route::get('books', [BookController::class, 'getBooks'])->middleware('auth:api');
-Route::get('books/{id}', [BookController::class, 'getBook'])->middleware('auth:api');
-Route::post('books', [BookController::class, 'createBook'])->middleware('auth:api');
-Route::put('books/{id}', [BookController::class, 'updateBook'])->middleware('auth:api');
-Route::delete('books/{id}', [BookController::class, 'deleteBook'])->middleware('auth:api');
+Route::middleware('auth:api')->group(function () {
+    Route::get('books', [BookController::class, 'getBooks']);
+    Route::get('books/{id}', [BookController::class, 'getBook']);
+    Route::post('books', [BookController::class, 'createBook']);
+    Route::put('books/{id}', [BookController::class, 'updateBook']);
+    Route::delete('books/{id}', [BookController::class, 'deleteBook']);
+});
 
-Route::get('users', [AuthController::class, 'getUsers'])->middleware('auth:api');
-Route::post('users', [AuthController::class, 'createUser'])->middleware('auth:api');
-Route::get('users/{id}', [AuthController::class, 'getUser'])->middleware('auth:api');
-Route::put('users/{id}', [AuthController::class, 'updateUser'])->middleware('auth:api');
-Route::delete('users/{id}', [AuthController::class, 'deleteUser'])->middleware('auth:api');
+Route::get('users', [AuthController::class, 'getUsers']);
+Route::post('users', [AuthController::class, 'createUser']);
+Route::get('users/{id}', [AuthController::class, 'getUser']);
+Route::put('users/{id}', [AuthController::class, 'updateUser']);
+Route::delete('users/{id}', [AuthController::class, 'deleteUser']);

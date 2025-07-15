@@ -28,33 +28,76 @@ class AuthController extends Controller
             ]);
         }
 
-        User::create([
+        $user=User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
 
-        // Return a response
-        return response()->json([
+        $token=$user->createToken('auth_token')->accessToken;
+
+        return response([
+            'token' => $token,
+        ]);
+        /*        return response()->json([
             "status" => 1,
             "message" => "User registered successfully",
             "data" => [
                 'name' => $request->name,
-                'email' => $request->email
+                'email' => $request->email,
+                'token' => $token
             ]
         ]);
+        */
     }
 
-    public function getBooks()
+    public function login(Request $request) //TO REVIEW
     {
-        $books = Book::where('user_id', Auth::id())
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+        // Validate the request data
+        $validatedData = Validator::make($request->all(), [
+            'email' => 'required',
+            'password' => 'required',
+        ]);
 
-        // Logic to retrieve books
+        if ($validatedData->fails()) {
+            return response()->json([
+                "status" => 0,
+                "message" => "Validation failed",
+                "data" => $validatedData->errors()->all()
+            ]);
+        }
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            $user = Auth::user();
+            $token = $user->createToken('auth_token')->accessToken;
+
+            return response()->json([
+                "status" => 1,
+                "message" => "Login successful",
+                "data" => [
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'token' => $token
+                ]
+            ]);
+        } else {
+            return response()->json([
+                "status" => 0,
+                "message" => "Invalid credentials"
+            ]);
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        // Revoke all tokens
+        $request->user()->tokens()->each(function($token) {
+            $token->delete();
+        });
+
         return response()->json([
             "status" => 1,
-            "data" => [$books] // Replace with actual book data
+            "message" => "Logout successful"
         ]);
     }
 }

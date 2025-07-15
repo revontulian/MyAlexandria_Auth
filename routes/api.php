@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\BookController;
+use App\Http\Controllers\API\UserController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -19,8 +20,4 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('books/{id}', [BookController::class, 'deleteBook']);
 });
 
-Route::get('users', [AuthController::class, 'getUsers']);
-Route::post('users', [AuthController::class, 'createUser']);
-Route::get('users/{id}', [AuthController::class, 'getUser']);
-Route::put('users/{id}', [AuthController::class, 'updateUser']);
-Route::delete('users/{id}', [AuthController::class, 'deleteUser']);
+Route::apiResource('users', UserController::class)->only(['index', 'show', 'store', 'update', 'destroy']);

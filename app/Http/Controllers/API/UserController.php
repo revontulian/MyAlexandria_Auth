@@ -38,20 +38,21 @@ class UserController extends Controller
                 "status" => 0,
                 "message" => "Validation failed",
                 "data" => $validatedData->errors()->all()
+            ], 422);
+        } else {
+
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
             ]);
+
+            return response()->json([
+                'status' => 1,
+                'message' => 'User created successfully',
+                'data' => $user
+            ], 201);
         }
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
-
-        return response()->json([
-            'status' => 1,
-            'message' => 'User created successfully',
-            'data' => $user
-        ]);
     }
 
     /**

@@ -1,6 +1,6 @@
 <x-layout>
 
-    <h2>My Shelf</h2>
+    <h2>My Shelf - Owned Books</h2>
 
     <ul>
         @foreach ($books as $book)

@@ -29,6 +29,10 @@
             @endforeach
         </select>
 
+        <!-- Book description -->
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4">{{ old('description') }}</textarea>
+
         <!-- Book public status -->
         <label for="is_public" class="block mb-2">Do you want this book to be public?</label>
         <input type="hidden" name="is_public" value="0">

@@ -20,7 +20,7 @@ class BookController extends Controller
     {
         // route '/index' to list all books
         // Logic to retrieve and return a list of books
-        $books = Book::where('user_id', Auth::id())
+        $books = Book::where('owner_user_id', Auth::id())
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         return view('books.index', ['books' => $books]);
@@ -53,7 +53,8 @@ class BookController extends Controller
             'published_date' => 'required|date',
             'is_public' => 'nullable|boolean',
         ]);
-        $validated['user_id'] = Auth::id();
+        $validated['owner_user_id'] = Auth::id();
+        $validated['current_user_id'] = Auth::id();
 
         Book::create($validated);
 

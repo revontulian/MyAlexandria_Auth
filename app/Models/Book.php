@@ -13,6 +13,7 @@ class Book extends Model
         'isbn',
         'published_date',
         'genre',
+        'description',
         'is_public',
         'owner_user_id',
         'current_user_id',

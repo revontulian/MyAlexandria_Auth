@@ -24,6 +24,7 @@ class BookFactory extends Factory
             'isbn' => fake()->unique()->isbn13(),
             'published_date' => fake()->dateTimeBetween('-10 years', 'now'),
             'genre' => fake()->word(),
+            'description' => fake()->paragraph(),
             'is_public' => fake()->boolean(80), // 80% chance to be true
             'owner_user_id' => $user_id,
             'current_user_id' => $user_id, // Assuming the current user is the same

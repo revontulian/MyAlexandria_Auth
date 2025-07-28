@@ -16,6 +16,8 @@ class BookFactory extends Factory
      */
     public function definition(): array
     {
+        $user_id = fake()->numberBetween(1, 2); // Assuming you have users with IDs 1 and 2
+        
         return [
             'title' => fake()->sentence(3), // Generates a title with 3 words
             'author' => fake()->name(),
@@ -23,7 +25,8 @@ class BookFactory extends Factory
             'published_date' => fake()->dateTimeBetween('-10 years', 'now'),
             'genre' => fake()->word(),
             'is_public' => fake()->boolean(80), // 80% chance to be true
-            'user_id' => fake()->numberBetween(1, 2)
+            'owner_user_id' => $user_id,
+            'current_user_id' => $user_id, // Assuming the current user is the same
         ];
     }
 }

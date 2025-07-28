@@ -14,7 +14,8 @@ class Book extends Model
         'published_date',
         'genre',
         'is_public',
-        'user_id',
+        'owner_user_id',
+        'current_user_id',
     ];
     
     /** @use HasFactory<\Database\Factories\BookFactory> */

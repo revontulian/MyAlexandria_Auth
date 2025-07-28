@@ -20,7 +20,8 @@ return new class extends Migration
             $table->date('published_date')->nullable();
             $table->string('genre')->nullable();
             $table->boolean('is_public')->default(true);
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('owner_user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('current_user_id')->nullable()->constrained('users')->onDelete('set null');
             
         });
     }

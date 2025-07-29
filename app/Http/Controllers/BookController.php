@@ -9,11 +9,39 @@ use Illuminate\Support\Facades\Auth;
 class BookController extends Controller
 {
     protected $genres = [
-        'Fiction',
-        'Non-Fiction',
-        'Science Fiction',
+        'Adventure',
+        'Art',
+        'Autobiography',
+        'Biography',
+        'Business',
+        'Children\'s',
+        'Classics',
+        'Comics/Graphic Novels',
+        'Contemporary',
+        'Cooking',
+        'Crime',
+        'Drama',
+        'Education',
         'Fantasy',
+        'Fiction',
+        'Historical Fiction',
+        'History',
+        'Horror',
+        'Literary Fiction',
+        'Memoir',
         'Mystery',
+        'Non-Fiction',
+        'Philosophy',
+        'Poetry',
+        'Religion',
+        'Romance',
+        'Science',
+        'Science Fiction',
+        'Self-Help',
+        'Technology',
+        'Thriller',
+        'Travel',
+        'Young Adult'
     ];
 
     public function index()

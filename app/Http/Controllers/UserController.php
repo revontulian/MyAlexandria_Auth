@@ -38,7 +38,7 @@ class UserController extends Controller
         $user->roles = json_encode($roles);
         $user->save();
 
-        return redirect()->route('users.admin')->with('success', 'User made admin successfully!');
+        return redirect()->route('users.admin')->with('success', 'Admin privileges granted successfully!');
     }
 
     public function dismissAdmin($id)

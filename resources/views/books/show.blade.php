@@ -7,8 +7,8 @@
         <p><strong>ISBN:</strong> {{ $book->isbn }}</p>
         <p><strong>Genre:</strong> {{ $book->genre }}</p>
         <p><strong>Description:</strong> {{ $book->description }}</p>
-        <p><strong>Owner:</strong> {{ $book->ownerUser->name ?? 'Unknown' }}</p>
-        <p><strong>Current User:</strong> {{ $book->currentUser->name ?? 'Unknown' }}</p>
+        <p><strong>Owner Id:</strong> {{ $book->owner_user_id ?? 'Unknown' }}</p>
+        <p><strong>Current User Id:</strong> {{ $book->current_user_id ?? 'Unknown' }}</p>
         <p><strong>Public:</strong> {{ $book->is_public ? 'Yes' : 'No' }}</p>
         <div class="mt-4 flex justify-center items-center gap-4">
             <a href="{{ route('books.edit', $book->id) }}" class="btn my-4 w-32 text-center">Edit Book</a>

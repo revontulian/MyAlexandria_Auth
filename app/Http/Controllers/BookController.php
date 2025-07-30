@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class BookController extends Controller
 {
@@ -52,6 +53,18 @@ class BookController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         return view('books.index', ['books' => $books]);
+    }
+
+    public function show_public_shelf($id){
+        // route '/shelf/{user_id}' to show a public shelf of books
+        // Logic to retrieve and return a public shelf of books by user ID
+        $user = User::findOrFail($id);
+        
+        $books = Book::where('owner_user_id', $id)
+            ->where('is_public', true)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        return view('books.index', ['books' => $books, 'user' => $user]);
     }
 
     public function show($id)

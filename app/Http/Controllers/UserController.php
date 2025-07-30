@@ -21,6 +21,13 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         return view('users.show', ['user' => $user]);
     }
+    
+    public function identify($id) : User
+    {
+        // Logic to identify a user by ID
+        $user = User::findOrFail($id);
+        return $user;
+    }
 
     public function makeAdmin($id)
     {

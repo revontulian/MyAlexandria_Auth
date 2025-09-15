@@ -49,17 +49,23 @@ class BookController extends Controller
     {
         // route '/index' to list all books
         // Logic to retrieve and return a list of books
-        $books = Book::where('owner_user_id', Auth::id())
+        $user = Auth::user();
+
+        $books = Book::where(function ($query) {
+            $query->where('owner_user_id', Auth::id())
+                ->orWhere('current_user_id', Auth::id());
+        })
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-        return view('books.index', ['books' => $books]);
+        return view('books.index', ['books' => $books, 'user' => $user]);
     }
 
-    public function show_public_shelf($id){
+    public function show_public_shelf($id)
+    {
         // route '/shelf/{user_id}' to show a public shelf of books
         // Logic to retrieve and return a public shelf of books by user ID
         $user = User::findOrFail($id);
-        
+
         $books = Book::where('owner_user_id', $id)
             ->where('is_public', true)
             ->orderBy('created_at', 'desc')
@@ -143,5 +149,17 @@ class BookController extends Controller
 
         // Redirect to the index page with a success message
         return redirect()->route('books.index')->with('success', 'Book deleted successfully!');
+    }
+
+    public function borrow($id)
+    {
+        // route '/borrow/{id}' to borrow a book
+        // Logic to mark a book as borrowed by the current user
+        $book = Book::findOrFail($id);
+        $book->current_user_id = Auth::id();
+        $book->save();
+
+        // Redirect to the index page with a success message
+        return redirect()->route('books.index')->with('success', 'Book borrowed successfully!');
     }
 }

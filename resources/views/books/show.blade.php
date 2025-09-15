@@ -11,12 +11,21 @@
         <p><strong>Current User Id:</strong> {{ $book->current_user_id ?? 'Unknown' }}</p>
         <p><strong>Public:</strong> {{ $book->is_public ? 'Yes' : 'No' }}</p>
         <div class="mt-4 flex justify-center items-center gap-4">
+
+            @if ($book->owner_user_id == Auth::id())
             <a href="{{ route('books.edit', $book->id) }}" class="btn my-4 w-32 text-center">Edit Book</a>
             <form method="POST" action="{{ route('books.destroy', $book->id) }}" class="my-4 w-32">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger w-full">Delete Book</button>
             </form>
+            @else
+            <form method="POST" action="{{ route('books.borrow', $book->id) }}" class="my-4 w-32">
+                @csrf
+                <button type="submit" class="btn w-full">Borrow Book</button>
+            </form>
+            @endif
+
         </div>
     </div>
 

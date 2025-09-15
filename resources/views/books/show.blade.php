@@ -20,10 +20,17 @@
                 <button type="submit" class="btn btn-danger w-full">Delete Book</button>
             </form>
             @else
-            <form method="POST" action="{{ route('books.borrow', $book->id) }}" class="my-4 w-32">
-                @csrf
-                <button type="submit" class="btn w-full">Borrow Book</button>
-            </form>
+                @if ($book->current_user_id != Auth::id())
+                <form method="POST" action="{{ route('books.borrow', $book->id) }}" class="my-4 w-32">
+                    @csrf
+                    <button type="submit" class="btn w-full">Borrow Book</button>
+                </form>
+                @else
+                <form method="POST" action="{{ route('books.return', $book->id) }}" class="my-4 w-32">
+                    @csrf
+                    <button type="submit" class="btn w-full">Return Book</button>
+                </form>
+                @endif
             @endif
 
         </div>

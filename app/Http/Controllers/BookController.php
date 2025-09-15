@@ -162,4 +162,16 @@ class BookController extends Controller
         // Redirect to the index page with a success message
         return redirect()->route('books.index')->with('success', 'Book borrowed successfully!');
     }
+
+    public function returnBook($id)
+    {
+        // route '/return/{id}' to return a borrowed book
+        // Logic to mark a book as returned (set current_user_id to null)
+        $book = Book::findOrFail($id);
+        $book->current_user_id = $book->owner_user_id;
+        $book->save();
+
+        // Redirect to the index page with a success message
+        return redirect()->route('books.index')->with('success', 'Book returned successfully!');
+    }
 }

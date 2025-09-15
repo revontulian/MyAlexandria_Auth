@@ -26,6 +26,7 @@ Route::middleware('auth')->controller(BookController::class)->group(function () 
     Route::get('/edit/{id}', 'edit')->name('books.edit');
     Route::put('/books/{id}', 'update')->name('books.update');
     Route::post('/books/{id}/borrow', 'borrow')->name('books.borrow');
+    Route::post('/books/{id}/return', 'returnBook')->name('books.return');
     Route::delete('/books/{id}', 'destroy')->name('books.destroy');
     Route::get('/shelf/{id}', 'show_public_shelf')->name('books.shelf');
 });

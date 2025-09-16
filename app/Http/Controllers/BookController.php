@@ -163,6 +163,32 @@ class BookController extends Controller
         return redirect()->route('books.index')->with('success', 'Book borrowed successfully!');
     }
 
+    public function borrowedBooks()
+    {
+        // route '/borrowed' to list all books borrowed by the current user
+        // Logic to retrieve and return a list of borrowed books
+        $user = Auth::user();
+
+        $books = Book::where('current_user_id', Auth::id())
+            ->where('owner_user_id', '!=', Auth::id())
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        return view('books.index', ['books' => $books, 'user' => $user]);
+    }
+
+    public function lentBooks()
+    {
+        // route '/lent' to list all books lent out by the current user
+        // Logic to retrieve and return a list of lent out books
+        $user = Auth::user();
+
+        $books = Book::where('owner_user_id', Auth::id())
+            ->where('current_user_id', '!=', Auth::id())
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        return view('books.index', ['books' => $books, 'user' => $user]);
+    }
+
     public function returnBook($id)
     {
         // route '/return/{id}' to return a borrowed book

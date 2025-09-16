@@ -13,7 +13,7 @@
     </div>
     @endif
 
-    <header>
+    <header class="fixed top-0 left-0 w-full z-50 bg-white shadow">
         <nav>
             <h1>
                 <a href="/">MyAlexandria App</a>
@@ -50,13 +50,15 @@
         </nav>
     </header>
     
-    <div class="flex">
-        <aside class="w-48 bg-gray-100 min-h-screen p-4">
+    <div class="flex pt-18">
+        <aside class="fixed w-58 bg-amber-50 min-h-screen p-4">
             @auth
-            <h2 class="font-bold mb-2">Your Shelf</h2>
+            <h2 class="font-bold mb-2">Options</h2>
             <ul>
-                <li class="mb-4"><a href="{{ route('books.index') }}" class="btn w-full">My Books</a></li>
-                <li class="mb-4"><a href="{{ route('books.add') }}" class="btn w-full">Add a book</a></li>
+                <li class="mb-8"><a href="{{ route('books.index') }}" class="btn">My books</a></li>
+                <li class="mb-8"><a href="{{ route('books.add') }}" class="btn">Add a book</a></li>
+                <li class="mb-8"><a href="{{ route('books.borrowed') }}" class="btn">My borrowed books</a></li>
+                <li class="mb-8"><a href="{{ route('books.lent') }}" class="btn">My lent books</a></li>
 
             </ul>
             @endauth

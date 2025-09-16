@@ -64,4 +64,8 @@ input, select, textarea {
 .btn {
   @apply rounded px-3 py-2 bg-amber-300 hover:bg-amber-500 hover:text-white;
 }
+.private {
+  @apply opacity-50;
+}
+
 

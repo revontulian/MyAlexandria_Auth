@@ -7,11 +7,7 @@
 
 </head>
 <body>
-    @if (session('success'))
-    <div id="flash" class="p-4 text-center bg-green-50 text-green-500 font-bold">
-        {{ session('success') }}
-    </div>
-    @endif
+
 
     <header class="fixed top-0 left-0 w-full z-50 bg-white shadow">
         <nav>
@@ -39,28 +35,36 @@
             <a href="{{ route('users.admin') }}" class="btn">Admin Panel</a>
             @endif
 
-            
+
             <form method="POST" action="{{ route('logout') }}" class="m-0">
                 @csrf
                 <button type="submit" class="btn">Logout</button>
-                
+
             </form>
             @endauth
-            
+
         </nav>
+        @if (session('success'))
+        <div id="flash" class="p-4 mt-2 text-center bg-green-50 text-green-500 font-bold z-50">
+            {{ session('success') }}
+        </div>
+        @endif
     </header>
-    
+
     <div class="flex pt-18">
-        <aside class="fixed w-58 bg-amber-50 min-h-screen p-4">
+        <aside class="w-58 bg-amber-50 min-h-screen p-4">
             @auth
             <h2 class="font-bold mb-2">Options</h2>
             <ul>
                 <li class="mb-8"><a href="{{ route('books.index') }}" class="btn">My books</a></li>
-                <li class="mb-8"><a href="{{ route('books.add') }}" class="btn">Add a book</a></li>
                 <li class="mb-8"><a href="{{ route('books.borrowed') }}" class="btn">My borrowed books</a></li>
                 <li class="mb-8"><a href="{{ route('books.lent') }}" class="btn">My lent books</a></li>
-
+                <li class="mb-8"><a href="{{ route('books.add') }}" class="btn">Add a book</a></li>
+                <li class="mb-8"><a href="{{ route('books.shelves') }}" class="bluebtn">Explore shelves</a></li>
             </ul>
+
+            <h2 class="font-bold mb-2">Friends' shelves</h2>
+            <h3>Pending development</h3>
             @endauth
         </aside>
 

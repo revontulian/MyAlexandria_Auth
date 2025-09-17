@@ -163,6 +163,14 @@ class BookController extends Controller
         return redirect()->route('books.index')->with('success', 'Book borrowed successfully!');
     }
 
+    public function list_shelves()
+    {
+        // route '/shelves' to list all users with public shelves
+        // Logic to retrieve and return a list of users with public shelves
+        $users = User::where('id', '!=', Auth::id())->get();
+        return view('books.shelves', ['users' => $users]);
+    }
+
     public function borrowedBooks()
     {
         // route '/borrowed' to list all books borrowed by the current user

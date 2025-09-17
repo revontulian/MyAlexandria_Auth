@@ -31,6 +31,7 @@ Route::middleware('auth')->controller(BookController::class)->group(function () 
     Route::post('/books/{id}/return', 'returnBook')->name('books.return');
     Route::delete('/books/{id}', 'destroy')->name('books.destroy');
     Route::get('/shelf/{id}', 'show_public_shelf')->name('books.shelf');
+    Route::get('/shelves', 'list_shelves')->name('books.shelves');
 });
 
 Route::middleware('auth')->controller(UserController::class)->group(function () {

@@ -11,6 +11,7 @@
         <li>
             <x-card href="{{ route('books.show', $book->id) }}" :highlight="$book['owner_user_id'] == Auth::id()" :private="!$book['is_public']">
                 <h3>{{ $book->title }}</h3>
+                <h5>by {{ $book->author }}</h5>
             </x-card>
         </li>
         @endforeach

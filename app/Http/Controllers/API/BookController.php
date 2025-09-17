@@ -75,7 +75,7 @@ class BookController extends Controller
         $validatedData = $validator->validated();
         $validatedData['user_id'] = Auth::id();
 
-        
+
         $book = Book::create($validatedData);
 
         return response()->json([
@@ -137,5 +137,33 @@ class BookController extends Controller
             "status" => 1,
             "message" => "Book deleted successfully"
         ], 201);
+    }
+
+    public function getStats()
+    {
+        $totalBooks = Book::count();
+        $publicBooks = Book::where('is_public', true)->count();
+        $privateBooks = Book::where('is_public', false)->count();
+
+        return response()->json([
+            "status" => 1,
+            "data" => [
+                "total_books" => $totalBooks,
+                "public_books" => $publicBooks,
+                "private_books" => $privateBooks,
+            ]
+        ]);
+    }
+
+    public function countUsersWithBooksByAuthor(string $author)
+    {
+        $count = Book::where('author', $author)
+            ->distinct('user_id')
+            ->count('user_id');
+
+        return response()->json([
+            "status" => 1,
+            "users_with_books_by_author" => $count
+        ]);
     }
 }

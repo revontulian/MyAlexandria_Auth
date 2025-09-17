@@ -18,6 +18,9 @@ Route::middleware('auth:api')->group(function () {
     Route::post('books', [BookController::class, 'createBook']);
     Route::put('books/{id}', [BookController::class, 'updateBook']);
     Route::delete('books/{id}', [BookController::class, 'deleteBook']);
+    Route::get('books/stats', [BookController::class, 'getStats']);
+    Route::get('books/{author}', [BookController::class, 'countUsersWithBooksByAuthor']);
 });
 
 Route::apiResource('users', UserController::class)->only(['index', 'show', 'store', 'update', 'destroy']);
+Route::get('users/lastmonth', [UserController::class, 'usersLastMonth'])->middleware('auth:api');

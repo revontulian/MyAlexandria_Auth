@@ -127,4 +127,16 @@ class UserController extends Controller
             ]);
         }
     }
+
+    public function usersLastMonth()
+    {
+        $lastMonth = now()->subMonth();
+        $users = User::where('created_at', '>=', $lastMonth)->get();
+
+        return response()->json([
+            'status' => 1,
+            'message' => 'Users registered in the last month',
+            'data' => $users
+        ]);
+    }
 }
